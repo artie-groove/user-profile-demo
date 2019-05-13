@@ -1,0 +1,57 @@
+{
+    "signup":
+    {
+        "status": {},
+        "data":
+        {
+        	"firstname": {
+        		"value": ""
+        	},
+        	"lastname": {
+        		"value": ""
+        	},
+            "username":
+            {
+                "value": ""
+            },
+            "email":
+            {
+                "value": ""
+            },
+            "newsletters":
+            {
+                "value": false,
+                "validityStatus": "PROPER_VALUE"
+            },
+            "phone":
+            {
+                "value": ""
+            },
+            "password":
+            {
+                "value": ""
+            },
+            "passwordConfirmation":
+            {
+                "value": ""
+            },
+            "birthdate":
+            {
+                "value": ""
+            },
+            "biography":
+            {
+                "value": "",
+                "validityStatus": "PROPER_VALUE"
+            },
+            "personal-information-processing":
+            {
+                "value": true,
+                "validityStatus": "PROPER_VALUE"
+            },
+            "photo": {
+            	"value": ""
+            }
+        }
+    }
+}

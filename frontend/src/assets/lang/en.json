@@ -1,0 +1,5 @@
+{
+  "components.SignupForm.signupFormHint": "You need to provide some personal information. Please, fill in the below form",
+  "components.SignupForm.signupFormTitle": "Sign Up",
+  "serverConnectionError": "Couldn't connect to server: \"{errorMsg}\". Please, try later. If you can't submit the form, please contact us. We bring our apologies for the inconvenience."
+}

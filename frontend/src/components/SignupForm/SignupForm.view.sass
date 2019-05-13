@@ -1,0 +1,79 @@
+@import '../../sass/mixins'
+@import '../../sass/variables'
+
+$bgColor: #fafafa
+
+#SignupForm
+	.container > .row
+		min-height: 100vh
+
+	.card
+		background: $bgColor
+		padding: 20px 35px
+		margin-top: 20px
+		margin-bottom: 20px
+
+		&-title
+			font-size: 1.5em
+			font-weight: bold
+			color: #555
+
+		&-text
+			font-size: .8em
+			line-height: 1.2em
+
+	form > .row
+		margin-top: 45px
+		margin-bottom: 45px
+		align-items: center
+
+	.form-group
+		margin-bottom: 0
+
+	.hint
+		font-size: .8em
+		color: $gray-500
+		+media-breakpoint-up(md)
+			margin-top: 2.4rem
+		+media-breakpoint-down(sm)
+			margin-top: 15px
+
+	#field-email
+		margin-bottom: 0
+
+	#field-newsletters
+		.hint
+			margin-top: 0
+
+	#field-personal-information-processing
+		.custom-control-label
+			line-height: 1.1em
+			&::before, &::after
+				top: 3px
+
+		.hint
+			+media-breakpoint-up(md)
+				margin-top: 0
+
+	textarea
+		min-height: 300px
+
+	[class$="-feedback"]
+		+media-breakpoint-up(md)
+			position: absolute
+			background-color: $bgColor
+			line-height: 1.2em
+			padding-right: 35px
+			padding-bottom: 5px
+			padding-left: 15px
+			margin-left: -15px
+			z-index: 1
+
+	input ~ .spinner-border
+		position: absolute
+		margin-top: -30px
+		right: 30px
+	button[type="submit"]
+		margin-top: 4rem
+
+

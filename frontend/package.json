@@ -1,0 +1,59 @@
+{
+  "name": "react-intro",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "js-cookie": "^2.2.0",
+    "js-sha256": "^0.9.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-fade-in": "^0.1.6",
+    "react-intl": "^2.8.0",
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^3.0.0",
+    "reactstrap": "^8.0.0",
+    "reduce-reducers": "^1.0.2",
+    "redux": "^4.0.1",
+    "redux-logic": "^2.1.1",
+    "tar": "^4.4.8"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "extract-messages": "npx cross-env NODE_ENV=development npx extract-messages -l=en,ru -o ../backend/public/lang -d en --flat true \"src/**/!(*.test).js\"",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "react-pug"
+    ],
+    "extends": [
+      "react-app",
+      "plugin:react-pug/all"
+    ],
+    "rules": {
+      "react-pug/indent": "off"
+    }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "babel-plugin-react-intl-auto": "^1.7.0",
+    "babel-plugin-transform-react-pug": "^7.0.0",
+    "cross-env": "^5.2.0",
+    "customize-cra": "^0.2.12",
+    "eslint-plugin-react-pug": "^0.5.7",
+    "extract-react-intl-messages": "^1.0.1",
+    "react-app-rewired": "^2.1.3"
+  }
+}

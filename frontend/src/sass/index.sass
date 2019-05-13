@@ -1,0 +1,30 @@
+$border-radius: 0
+$border-radius-lg: 0
+$border-radius-sm: 0
+$font-family-sans-serif: 'Cuprum', sans-serif
+$font-size-base: 1.3rem
+
+// Bootstrap and its default variables
+@import "../../node_modules/bootstrap/scss/bootstrap"
+
+@import "variables"
+@import "mixins"
+
+#root
+	padding: $globalPaddingY 0
+	min-height: 100vh
+
+.proportional
+	+aspect-ratio-wrapper(1, 1.4)
+
+.proportional-inner
+	+aspect-ratio-container()
+
+.proportional-square
+	+aspect-ratio(1, 1)
+
+.img-centered
+	position: relative
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)

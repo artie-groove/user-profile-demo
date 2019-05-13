@@ -1,0 +1,36 @@
+@import 'functions'
+@import '../../node_modules/bootstrap/scss/variables'
+@import '../../node_modules/bootstrap/scss/mixins'
+
+=with-icon($base64, $color, $size, $offsetX, $offsetY)
+	&::before
+		content: ' '
+		display: block
+		position: absolute
+		background-size: cover
+		background-repeat: no-repeat
+		background-image: svg-image($base64, $color)
+		width: $size
+		height: $size
+		left: $offsetX
+		margin-top: $offsetY
+
+=aspect-ratio-wrapper($width, $height) 
+	position: relative
+	&::before
+		display: block
+		content: ""
+		width: 100%
+		padding-top: ($height / $width) * 100%
+
+=aspect-ratio-container
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	overflow: hidden
+
+=aspect-ratio($width, $height)
+	&::before
+		padding-top: ($height / $width) * 100%

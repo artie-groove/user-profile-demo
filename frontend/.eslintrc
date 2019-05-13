@@ -1,0 +1,12 @@
+{
+    "plugins": [
+        "react-pug",
+    ],
+    "extends": [
+    	"react-app",
+    	"plugin:react-pug/all"
+    ],
+    "rules": {
+      "react-pug/indent": "off"
+    }
+}
