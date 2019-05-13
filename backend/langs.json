@@ -1,0 +1,24 @@
+{
+	"en": {
+		"authInvalidData": "Please, supply data in the correct format",
+		"authWrongCredentials": "Incorrect username or password",
+		"localeNotFound": "The requested locale is not supported",
+		"invalidFormat": "Format error. Please, provide correct data",
+		"invalidKeyFieldsData": "Invalid data provided for the key fields",
+		"userAlreadyExists": "A user with the provided key fields already exists. Please, use unique data",
+		"invalidFormData": "Form was filled in incorrectly. Please, adhere to the specified requirements",
+		"failedToSavePhoto": "Failed to save photo: {errMsg}",
+		"unauthorizedError": "You are not authorized to access the resource or your session has expired. Please, log in again"
+	},
+	"ru": {
+		"authInvalidData": "Пожалуйста, предоставьте данные в корректном формате",
+		"authWrongCredentials": "Неверное имя пользователя или пароль",
+		"localeNotFound": "К сожалению, сервер не поддерживает указанную локаль",
+		"invalidFormat": "Ошибка формата. Пожалуйста, предоставьте корректные данные",
+		"invalidKeyFieldsData": "Неверно заполнены ключевые поля",
+		"userAlreadyExists": "Пользователь с указанными ключевыми параметрами уже существует. Пожалуйста, используйте уникальные данные",
+		"invalidFormData": "Форма заполнена некорректно. Пожалуйста, придерживайтесь описанных требований",
+		"failedToSavePhoto": "Ошибка сохранения фотографии: {errMsg}",
+		"unauthorizedError": "Вы не авторизованы для доступа к ресурсу или ваша сессия истекла. Пожалуйста, авторизуйтесь заново"
+	}
+}

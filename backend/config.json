@@ -1,0 +1,5 @@
+{
+	"secret": "Just a random unique string to be used with JWT",
+	"dbConnectionString": "mongodb://localhost:27017/test",
+	"API_PORT": 3001
+}
