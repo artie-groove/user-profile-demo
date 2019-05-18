@@ -1,6 +1,9 @@
 {
-    "status":
-    {},
+    "status": 
+    {
+        "step": 0,
+        "currentAwaitingKeyField": "lastname"
+    },
     "data":
     {
         "firstname":

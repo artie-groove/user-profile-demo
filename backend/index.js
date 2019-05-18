@@ -21,6 +21,9 @@ app.use(cors);
 // To parse cookies
 app.use(cookieParser());
 
+// handle locale
+app.use(localeHandler);
+
 // use JWT auth to secure the api
 app.use(jwt);
 
@@ -35,9 +38,6 @@ app.use(logger("dev"));
 
 // global error handler
 app.use(errorHandler);
-
-// handle locale
-app.use(localeHandler);
 
 // Префикс для API-запросов по HTTP
 app.use("/api", apiHandlers);

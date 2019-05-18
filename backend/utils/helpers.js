@@ -5,7 +5,8 @@ module.exports = {
 	respondSuccess,
 	respondFailure,
 	extractData,
-	errorHandler
+	errorHandler,
+	isKeyDataUnique
 }
 
 function respond(res, status, data) {
@@ -36,7 +37,6 @@ function extractData(schema, source) {
 }
 
 function errorHandler(err, req, res, next) {
-	console.log(req.locale);
 	const localizedMessages = messages[req.locale];
 
     if ( typeof (err) === 'string' ) {
@@ -51,4 +51,19 @@ function errorHandler(err, req, res, next) {
 
     // default to 500 server error
     return respondFailure(res, err.message, 500);
+}
+
+async function isKeyDataUnique(model, keyData) {
+	let alternatives = [];
+	for ( let key in keyData ) {
+		alternatives.push({ [key]: keyData[key] });
+	}
+	const data = await model
+		.find({ $or: alternatives })
+	 	.select("_id")
+	 	.exec();
+
+	return data.length
+		? false
+		: true;
 }

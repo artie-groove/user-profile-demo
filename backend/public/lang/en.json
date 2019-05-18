@@ -95,5 +95,6 @@
 	"components.SignupForm.submitButtonInProgressCaption": "Sending",
 	"components.SignupForm.userIdHint": "User identifier. Has to be composed of lowercase latin letters and/or digits. Нyphen is allowed. Should start with a letter and end with a letter or a digit. Minimim - 5 symbols. For example, 'giant-66'",
 	"components.SignupForm.userIdLabel": "Username",
+	"components.SignupForm.btnDemoCaption": "Demo",
 	"serverConnectionError": "Couldn't connect to server: \"{errorMsg}\". Please, try again later. If you can't submit the form, please contact us. We bring our apologies for the inconvenience."
 }

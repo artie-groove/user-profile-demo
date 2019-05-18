@@ -21,7 +21,9 @@ function getUserProfileHandler(req, res) {
 		else {
 			let { _id, username, ...userProfile } = data.toObject();
 			const doesPhotoExist = fs.existsSync(`${__dirname}/../public/photos/${data.username}.jpg`);
-			if ( doesPhotoExist ) userProfile.photo = `/photos/${data.username}.jpg`;
+			userProfile.photo = doesPhotoExist
+				? `/photos/${data.username}.jpg`
+				: '/assets/img/no-photo.svg';
 
 			return respondSuccess(res, userProfile);
 		}

@@ -1,5 +1,11 @@
 export function postProcessUserProfile(userProfileInfo) {
 	userProfileInfo.birthdate = new Date(userProfileInfo.birthdate);
-	userProfileInfo.age = Math.floor((Date.now() - userProfileInfo.birthdate) / (1000*60*60*24*365));
+	userProfileInfo.age = calculateAge(userProfileInfo.birthdate);
 	return userProfileInfo;
+}
+
+function calculateAge(birthdate) {
+	const ageDiffMs = Date.now() - birthdate.getTime();
+	const ageDate = new Date(ageDiffMs);
+	return Math.abs(ageDate.getUTCFullYear() - 1970);
 }

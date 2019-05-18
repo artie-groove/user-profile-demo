@@ -13,7 +13,8 @@ function jwt() {
 	            '/api/check-uniqueness',
 	            '/api/put-user-profile',
 	            /\/photos\/.+\.(?:jpg|png)$/,
-	            /\/i18n\/.+/
+	            /\/i18n\/.+/,
+	            /\/assets\/.+$/
 	        ]
 	    });
 }

@@ -1,0 +1,89 @@
+$blue: #007bff
+$arrowLength: 20px
+$pointerLength: 8px
+
+#FormDemo
+	display: inline-block
+	position: relative
+	margin-left: 2rem
+	a
+		position: relative
+		background-color: #fff
+		display: inline-block
+		padding: 5px 10px
+		border: 1px solid $blue
+		border-bottom-width: 2px
+		border-radius: 50%
+		color: $blue
+		transition: background-color 500ms, color 500ms
+		z-index: 5
+
+		&:hover
+			background-color: $blue
+			cursor: pointer
+			color: #fff
+
+			& ~ .arrow-wrapper .arrow
+				top: 0
+				animation: none
+
+	.arrow-wrapper
+		position: relative
+
+	.arrow
+		position: absolute
+		width: 100%
+		height: $arrowLength
+		animation: 500ms infinite alternate demo
+		z-index: 0
+		
+
+		&::after
+			content: ' '
+			display: block
+			position: absolute
+			width: 2px
+			background-color: $blue
+			height: 100%
+			left: 50%
+			transform: translateX(-50%)
+			z-index: 3
+
+
+		.pointer
+			display: inline-block
+			position: absolute
+			bottom: 0
+			left: 50%
+			transform: translateX(-50%)
+
+			&::before,
+			&::after
+				content: ' '
+				display: block
+				position: absolute
+				left: 50%
+				transform: translateX(-50%)
+
+			&::before
+				z-index: -1
+				bottom: $pointerLength * 1.5
+				border: 4px solid #fff
+				border-radius: 50%
+				width: 0
+				height: 0
+
+			&::after
+				z-index: -2
+				width: 0
+				bottom: 0
+				border: $pointerLength * 2 solid $blue
+				border-left: $pointerLength / 2 solid transparent
+				border-right: $pointerLength / 2 solid transparent
+				border-bottom: none
+
+@keyframes demo
+	from 
+		top: -6px
+	to
+		top: 0

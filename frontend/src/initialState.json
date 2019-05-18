@@ -1,7 +1,10 @@
 {
     "signup":
     {
-        "status": {},
+        "status": {
+            "step": 0,
+            "currentAwaitingKeyField": "lastname"
+        },
         "data":
         {
         	"firstname": {
@@ -50,7 +53,8 @@
                 "validityStatus": "PROPER_VALUE"
             },
             "photo": {
-            	"value": ""
+            	"value": "",
+                "validityStatus": "PROPER_VALUE"
             }
         }
     }

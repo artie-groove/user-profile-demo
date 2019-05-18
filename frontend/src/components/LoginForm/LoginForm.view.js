@@ -29,19 +29,17 @@ export default ({
 					Col.mx-auto
 						Card(body)
 							CardTitle.mb-1 #{formatMessage(messages.formTitle)}
-							//Авторизация
 
 							CardText.d-block.text-muted.mt-0 #{formatMessage(messages.formHint)}
-							// Пожалуйста, введите имя пользователя и&nbsp;пароль для получения доступа к&nbsp;личному кабинету.
 
 							Form(onSubmit=onSubmit)
 								FormGroup
 									Label(for="username") #{formatMessage(messages.usernameLabel)}
-									Input(type="text" name="username" id="username" onChange=onChange defaultValue="artie")
+									Input(type="text" name="username" id="username" onChange=onChange defaultValue="linus-torvalds")
 
 								FormGroup
 									Label(for="password") #{formatMessage(messages.passwordLabel)}
-									Input(type="password" name="password" id="password" onChange=onChange defaultValue="jxldcjon1")
+									Input(type="password" name="password" id="password" onChange=onChange defaultValue="linus-torvalds")
 
 								//FormGroup
 								//	CustomInput(type="checkbox" id="remember" label="Запомнить меня")

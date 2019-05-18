@@ -60,53 +60,33 @@ export function hydrate(initialState = {}) {
 	return initialState;
 }
 
-const inputEvent = new Event('input', {bubbles: true});
-const blurEvent = new Event('blur', {bubbles: true});
-const fieldBlurDelayMultiplier = 2;
-const pauseDelayMultiplier = 10;
+export async function scrollIntoElement(e) {
+	const element = e.target;
+	const rect = element.getBoundingClientRect();
+	const viewportHeight = document.documentElement.clientHeight;
 
-async function runSequenceText(element, sequence, delay) {
-	for ( let i = 0; i < sequence.length; i++ ) {
-		setNativeValue(element, element.value + sequence[i]);
-		element.dispatchEvent(inputEvent);
-		await sleeper(delay);
-	}
-}
+	// Required offset from the top for the element to be in the center
+	const offsetY = (viewportHeight - rect.height) / 2;
+	
+	// Difference between needed offset and actual relative position from the top
+	const deltaY = Math.floor(rect.top - offsetY);
 
-function runSequenceAtOnce(element, value) {
-	setNativeValue(element, value);
-	element.dispatchEvent(inputEvent);
-}
+	const transitionTime = 500;
+	const stepDelay = 5;
+	const stepsTotal = transitionTime / stepDelay;
+	const stepSize = Math.ceil(deltaY / stepsTotal);
 
-async function runSequence(elementId, sequence, delay) {
-	const element = document.getElementById(elementId);
+	// console.log(`Total: ${stepsTotal}. Size: ${stepSize}. Initial top: ${rect.top}. Target: ${offsetY}. Initial delta: ${deltaY}`);
 
-	let strategy = runSequenceText;
-	if ( sequence.atOnce ) {
-		sequence = sequence.value;
-		strategy = runSequenceAtOnce;
-	}
+	setTimeout( function step(stepsLeft) {
+		if ( stepsLeft === 0 ) return;
+		window.scrollBy(0, stepSize);
+		setTimeout(step, stepDelay, --stepsLeft);
 
-	await strategy(element, sequence, delay);
-	await sleeper(delay * fieldBlurDelayMultiplier);
-	element.dispatchEvent(blurEvent);
-}
+		// const progress = Math.floor(element.getBoundingClientRect().top);
+		// const target = Math.floor(offsetY);
+		// const delta = Math.floor(element.getBoundingClientRect().top - offsetY);
+		// console.log(`Top: ${progress}. Delta: ${delta} (${stepsLeft})`);
 
-export async function simulateFormFillIn(sequences, delay) {
-	for ( let elementId in sequences ) {
-		await runSequence(elementId, sequences[elementId], delay);
-		await sleeper(delay * pauseDelayMultiplier);
-	}
-}
-
-function setNativeValue(element, value) {
-	const valueSetter = Object.getOwnPropertyDescriptor(element, 'value').set;
-	const prototype = Object.getPrototypeOf(element);
-	const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
-
-	if (valueSetter && valueSetter !== prototypeValueSetter) {
-		prototypeValueSetter.call(element, value);
-	} else {
-		valueSetter.call(element, value);
-	}
+	}, 0, stepsTotal);
 }

@@ -32,9 +32,40 @@ const status = (state = {}, action) => {
 				externalError: action.externalError
 			}
 		case inputActionTypes.FIELD_EDITED:
+			const keyFields = "lastname password passwordConfirmation email phone birthdate biography".split(" ");
 			return {
 				...state,
-				externalError: undefined
+				externalError: undefined,
+
+				currentAwaitingKeyField: ((previousValue) => {
+					let fieldNameIndex = keyFields.indexOf(action.fieldName);
+					
+					// Skip if the field is not a key field
+					if ( ! ~ fieldNameIndex )
+						return previousValue;
+					
+					// Also skip if it's not the farthest
+					if ( fieldNameIndex < keyFields.indexOf(previousValue) )
+						return previousValue;
+
+					// If last edited key field is the final, return it
+					if ( fieldNameIndex >= keyFields.length - 1 )
+						return action.fieldName;
+
+					// Next key field in the list
+					return keyFields[fieldNameIndex + 1];
+
+				})(state.currentAwaitingKeyField),
+
+				// To determine the current step we check action.fieldName against an array of key fields
+				// Step counter can only be increased, not the other way
+				step: keyFields.reduce( (previousValue, fieldName, index) => {
+						if ( previousValue > index ) return previousValue;
+						return fieldName === action.fieldName
+							? index + 1
+							: previousValue
+					}, state.step),
+
 			}
 		default:
 			return state;		

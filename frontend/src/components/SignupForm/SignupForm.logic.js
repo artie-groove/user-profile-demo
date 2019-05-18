@@ -6,7 +6,6 @@ import { actionTypes, onSubmitResponse, onSubmitFailure } from './SignupForm.act
 import axios from 'axios';
 import { exractFormData } from './SignupForm.utils';
 import { sleeper, ajaxErrorParser } from 'utils';
-import cookies from 'js-cookie';
 
 const formSubmissionLogic = createLogic({
 	type: actionTypes.FORM_SUBMIT,

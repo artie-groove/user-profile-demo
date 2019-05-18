@@ -1,12 +1,28 @@
 import { connect } from 'react-redux';
 import Form from './SignupForm.container';
-import { onSubmit,  onPopulateValid , onPopulateInvalid } from './SignupForm.actions';
-import { simulateFormFillIn } from 'utils';
+import { onSubmit } from './SignupForm.actions';
+
+function setVisibilityFilter(signupState) {
+	let filter = [];
+	for ( let i = 0; i < signupState.status.step; i++ ) {
+		filter.push('revealed');
+	}
+	const currentKeyField = signupState.data[signupState.status.currentAwaitingKeyField];
+	const fieldValueIsProper = currentKeyField.validityStatus === "PROPER_VALUE";
+	const fieldIsNotPending = ! currentKeyField.isPending === true;
+	const fieldIsBeingEdited = ! currentKeyField.isTypingFinished;
+
+	filter.showProceedButton = fieldValueIsProper && fieldIsNotPending && fieldIsBeingEdited ? 'revealed' : '';
+
+	return filter;
+
+}
 
 const mapStateToProps = (state) => ({
 	isPending: state.signup.status.isPending,
 	isRegistered: state.signup.status.isRegistered,
 	externalError: state.signup.status.externalError,
+	steps: setVisibilityFilter(state.signup)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -14,36 +30,6 @@ const mapDispatchToProps = (dispatch) => ({
 		event.preventDefault();
 		dispatch(onSubmit());
 	},
-	onPopulateValidClick: () => {
-		const formData = {
-			// "firstname": "Ivan",
-			// "lastname": "Petrov",
-			// "username": "ivan-petrov",
-			// "password": "somepassword22",
-			// "passwordConfirmation": "somepassword22",
-			// "email": "example@email.com",
-			"newsletters": {
-				atOnce: true,
-				value: 'checked'
-			},
-			"phone": "+84 902-355-88-92",
-			"birthdate": {
-				atOnce: true,
-				value: "1988-02-12"
-			},
-			// "bigoraphy": "Some sample text"
-		}
-		
-		const delay = 100;
-
-		// simulateFormFillIn(formData, delay);
-		
-		
-		dispatch(onPopulateValid());
-	},
-	onPopulateInvalidClick: () => {
-		dispatch(onPopulateInvalid());
-	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

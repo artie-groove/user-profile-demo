@@ -21,6 +21,7 @@ import Lastname from './Lastname';
 // Other controls
 import SubmitButton from './SubmitButton';
 import ErrorDisplay from '../ErrorDisplay';
+import Demo from './Demo';
 
 import { defineMessages } from 'react-intl';
 
@@ -55,105 +56,116 @@ const messages = defineMessages({
 	loginLinkCaption: "Log in",
 	signupSuccessTitle: "Signed up successfully!",
 	signupSuccessMessage: "You're registered. Please, log in to your account",
-	populateWithLabel: "Populate form with values",
-	btnPopulateValidCaption: "Valid",
-	btnPopulateInvalidCaption: "Invalid"
+	btnDemoCaption: "Demo",
 });
 
 const View = ({
-	intl: { formatMessage }, onSubmit, isPending, externalError, isRegistered, onPopulateValidClick, onPopulateInvalidClick
+	intl: { formatMessage }, onSubmit, isPending, externalError, isRegistered, onPopulateValidClick, onPopulateInvalidClick, steps, onFocus
 }) => pug`
 	#SignupForm
 		FadeIn(delay=500)
 			Container
-				Row.align-items-center
+				Row
 					Col.mx-auto
 						if ! isRegistered
+							Demo(caption=formatMessage(messages.btnDemoCaption))
+						
 							Card(body)
 								CardTitle.mb-1 #{formatMessage(messages.signupFormTitle)}
 
-								CardText.d-block.text-muted.mt-0 #{formatMessage(messages.signupFormHint)}
+								CardText.d-block.text-muted.mt-0.mb-5 #{formatMessage(messages.signupFormHint)}
 
 								Form(onSubmit=onSubmit)
 									Row
 										Col(md=6).mb-5.mb-md-0
 											Firstname(label=formatMessage(messages.firstNameLabel))
 
-										Col(md=6)
+										Col(md=6 onFocus=onFocus)
 											Lastname(label=formatMessage(messages.lastNameLabel))
-
-									Row
-										Col(md=6)
-											Username(label=formatMessage(messages.userIdLabel))
-
-										Col(md=6)
-											.hint #{formatMessage(messages.userIdHint)}
 									
-									Row
-										Col(md=6)
-											Password(label=formatMessage(messages.passwordLabel))
+									.step(className=steps[0])
+										Row
+											Col(md=6)
+												Username(label=formatMessage(messages.userIdLabel))
 
-										Col(md=6)
-											.hint #{formatMessage(messages.passwordHint)}
+											Col(md=6)
+												.hint #{formatMessage(messages.userIdHint)}
 									
-									Row
-										Col(md=6)
-											PasswordConfirmation(label=formatMessage(messages.passwordConfirmationLabel))
+										Row
+											Col(md=6)
+												Password(label=formatMessage(messages.passwordLabel))
 
-										Col(md=6)
-											.hint #{formatMessage(messages.passwordConfirmationHint)}
+											Col(md=6)
+												.hint #{formatMessage(messages.passwordHint)}
+									
+									.step(className=steps[1])
+										Row
+											Col(md=6)
+												PasswordConfirmation(label=formatMessage(messages.passwordConfirmationLabel))
 
-									Row#field-email
-										Col(md=6)
-											Email(label=formatMessage(messages.emailLabel))
+											Col(md=6)
+												.hint #{formatMessage(messages.passwordConfirmationHint)}
 
-										Col(md=6)
-											.hint #{formatMessage(messages.emailHint)}
+									.step(className=steps[2])
+										Row#field-email
+											Col(md=6)
+												Email(label=formatMessage(messages.emailLabel))
 
-									Row#field-newsletters
-										Col(md=6)
-											Newsletters(label=formatMessage(messages.newslettersLabel))
+											Col(md=6)
+												.hint #{formatMessage(messages.emailHint)}
 
-										Col(md=6)
-											.hint #{formatMessage(messages.newslettersHint)} 
+										Row#field-newsletters
+											Col(md=6)
+												Newsletters(label=formatMessage(messages.newslettersLabel))
 
-									Row
-										Col(md=6)
-											Phone(label=formatMessage(messages.phoneLabel))
+											Col(md=6)
+												.hint #{formatMessage(messages.newslettersHint)} 
+									
+									.step(className=steps[3])
+										Row
+											Col(md=6)
+												Phone(label=formatMessage(messages.phoneLabel))
 
-										Col(md=6)
-											.hint #{formatMessage(messages.phoneHint)}
+											Col(md=6)
+												.hint #{formatMessage(messages.phoneHint)}
 
-									Row
-										Col(md=6)
-											Birthdate(label=formatMessage(messages.birthdateLabel))
+									.step(className=steps[4])
+										Row
+											Col(md=6)
+												Birthdate(label=formatMessage(messages.birthdateLabel))
 
-										Col(md=6)
-											.hint #{formatMessage(messages.birthdateHint)}
+											Col(md=6)
+												.hint #{formatMessage(messages.birthdateHint)}
 
-									Row
-										Col
-											Biography(label=formatMessage(messages.biographyLabel))
+									.step(className=steps[5])
+										Row
+											Col
+												Biography(label=formatMessage(messages.biographyLabel))
 
-									Row
-										Col(md=6)
-											Photo(label=formatMessage(messages.photoLabel))
+									.step(className=steps[6])
+										Row
+											Col(md=6)
+												Photo(label=formatMessage(messages.photoLabel))
 
-										Col(md=6)
-											.hint #{formatMessage(messages.photoHint)} 
+											Col(md=6)
+												.hint #{formatMessage(messages.photoHint)} 
 
-									Row#field-personal-information-processing
-										Col(md=6)
-											PersonalInformationProcessing(label=formatMessage(messages.personalInformationProcessingLabel))
-											
-										Col(md=6)
-											.hint #{formatMessage(messages.personalInformationProcessingHint)}
+										Row#field-personal-information-processing
+											Col(md=6)
+												PersonalInformationProcessing(label=formatMessage(messages.personalInformationProcessingLabel))
+												
+											Col(md=6)
+												.hint #{formatMessage(messages.personalInformationProcessingHint)}
+										
+										#SubmitButton
+											SubmitButton.d-block.w-100(
+												isPending=true
+												caption=formatMessage(messages.submitButtonCaption)
+												inProgressCaption=formatMessage(messages.submitButtonInProgressCaption)
+											)
 
-									SubmitButton.d-block.w-100(
-										isPending=true
-										caption=formatMessage(messages.submitButtonCaption)
-										inProgressCaption=formatMessage(messages.submitButtonInProgressCaption)
-									)
+									.step(className=steps.showProceedButton)
+										.proceedBtn &darr;
 
 									if externalError
 										ErrorDisplay(title=formatMessage(messages.signupErrorTitle) errorMsg=externalError)
@@ -170,14 +182,7 @@ const View = ({
 										
 										p #{formatMessage(messages.signupSuccessMessage)}
 
-										Link.btn.btn-lg.btn-primary.w-100(to="/") #{formatMessage(messages.loginLinkCaption)}
-						
-						#FormAuxControls
-							p #{formatMessage(messages.populateWithLabel)}
-
-							a(onClick=onPopulateValidClick) #{formatMessage(messages.btnPopulateValidCaption)}
-
-							a(onClick=onPopulateInvalidClick) #{formatMessage(messages.btnPopulateInvalidCaption)}
+										Link.btn.btn-lg.btn-primary.w-100(to="/") #{formatMessage(messages.loginLinkCaption)}						
 `;
 
 export default View;

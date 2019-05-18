@@ -95,5 +95,6 @@
 	"components.SignupForm.submitButtonInProgressCaption": "Отправка",
 	"components.SignupForm.userIdHint": "Идентификатор пользователя для входа в&nbsp;систему. Может содержать только строчные латинские буквы, цифры и&nbsp;дефис. Должен начинаться с&nbsp;буквы и&nbsp;заканчиваться буквой или цифрой. Минимум&nbsp;&mdash; 5&nbsp;символов. Например, giant-166",
 	"components.SignupForm.userIdLabel": "Имя пользователя",
+	"components.SignupForm.btnDemoCaption": "Демо",
 	"serverConnectionError": "Не&nbsp;удалось связаться с&nbsp;сервером: &laquo;{errorMsg}&raquo;. Пожалуйста, повторите попытку позже. Если вам не&nbsp;удалось отправить форму, пожалуйста, свяжитесь с&nbsp;нами. Приносим извинения за&nbsp;доставленные неудобства."
 }
