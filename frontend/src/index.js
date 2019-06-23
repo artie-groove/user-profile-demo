@@ -1,7 +1,7 @@
+import 'sass/index.sass';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import 'sass/index.sass';
 import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
 import logicMiddleware from 'configureLogic';
@@ -11,7 +11,6 @@ import { addLocaleData } from 'react-intl';
 import ru from 'react-intl/locale-data/ru';
 import { hydrate } from 'utils';
 import externalState from 'initialState.json';
-// import { PROPER_VALUE } from 'components/SignupForm/ValidateableInput/ValidateableInput.factory';
 
 // Adding localization functions for different languages
 addLocaleData(ru);

@@ -13,7 +13,7 @@ const messages = defineMessages({
 	logoutButtonCaption: "Log out",
 	newslettersStatusIndicatorLabel: "Newsletters",
 	biographyBlockTitle: "Short biography",
-	birthdate: "{birthdate, date, medium} ({age, number} years old)"
+	birthdate: "{birthdate, date, medium} ({age, plural, offset: 1 =0 {infant} other {{age, number} years old}})"
 });
 
 const View = ({

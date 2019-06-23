@@ -40,7 +40,7 @@ const fieldApprovalLogic = createLogic({
 	process({ ctx, intl }, dispatch, done) {
 		dispatch(ctx.requestApproval());
 		const config = {
-			url: "http://localhost:3001/api/check-uniqueness",
+			url: "/api/check-uniqueness",
 			params: {
 				name: ctx.fieldName,
 				value: ctx.value

@@ -14,6 +14,9 @@ frontend/coverage
 frontend/build
 backend/build
 
+#deployment
+docker-compose.yml
+
 # misc
 .DS_Store
 .env.local

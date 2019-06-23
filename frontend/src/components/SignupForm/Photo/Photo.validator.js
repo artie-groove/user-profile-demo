@@ -1,7 +1,4 @@
-import { statusCodes } from './Photo.container';
-import { PROPER_VALUE } from '../ValidateableInput/ValidateableInput.factory';
-
-export default function validate(file) {
+export default function validate(file, statusCodes = {}) {
 	// Пустая строка
 	if ( ! file )
 		return statusCodes.E_NOT_SELECTED;
@@ -16,5 +13,5 @@ export default function validate(file) {
 	if ( file.size > 5 * 1024 * 1024 )
 		return statusCodes.E_TOO_BIG;
 
-	return PROPER_VALUE;
+	return true;
 }

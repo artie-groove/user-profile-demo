@@ -1,14 +1,29 @@
-$border-radius: 0
-$border-radius-lg: 0
-$border-radius-sm: 0
-$font-family-sans-serif: 'Cuprum', sans-serif
-$font-size-base: 1.3rem
-
-// Bootstrap and its default variables
-@import "../../node_modules/bootstrap/scss/bootstrap"
-
+// Required
+@import "functions"
 @import "variables"
 @import "mixins"
+
+// Optional
+@import "~bootstrap/scss/reboot"
+@import "~bootstrap/scss/type"
+@import "~bootstrap/scss/images"
+@import "~bootstrap/scss/grid"
+@import "~bootstrap/scss/forms"
+@import "~bootstrap/scss/custom-forms"
+@import "~bootstrap/scss/buttons"
+@import "~bootstrap/scss/card"
+@import "~bootstrap/scss/spinners"
+@import "~bootstrap/scss/alert"
+@import "~bootstrap/scss/utilities/text"
+@import "~bootstrap/scss/utilities/display"
+@import "~bootstrap/scss/utilities/flex"
+@import "~bootstrap/scss/utilities/sizing"
+@import "~bootstrap/scss/utilities/spacing"
+@import "~bootstrap/scss/utilities/borders"
+@import "~bootstrap/scss/utilities/screenreaders"
+
+// Bootstrap and its default variables
+// @import "~bootstrap/scss/bootstrap"
 
 #root
 	padding: $globalPaddingY 0
@@ -28,3 +43,11 @@ $font-size-base: 1.3rem
 	top: 50%
 	left: 50%
 	transform: translate(-50%, -50%)
+
+// for some reason the CSS file node-sass compiles is not the same as the source SASS
+// the output will be like this:
+// background-position: 100% calc(.375em + .1875rem);
+.form-control.is-invalid, .was-validated .form-control:invalid,
+.form-control.is-valid, .was-validated .form-control:valid
+	// background-position: center right calc(0.375em + 0.1875rem)
+	background-position: calc(100% - (.375em + .1875rem)) 50%

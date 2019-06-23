@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 import { getActions } from './ValidateableInput.actions';
 import View from './ValidateableInput.view';
-import { getErrorIntl } from './ValidateableInput.utils';
+import { getErrorIntl, getEnhancedValidator } from './ValidateableInput.utils';
 import { DefaultInput, AlternativeInput } from './ValidateableInput.inputs';
 
 export const PROPER_VALUE = 'PROPER_VALUE';
 
 export default ({
 	/* values */	fieldName, inputType, errorStrings, inProgressFilter, validMsg,
-	/* handlers */ 	validate = () => PROPER_VALUE
+	/* handlers */ 	validate = () => true
 }) => {
 	const mapStateToProps = (state, ownProps) => {
 		const { validityStatus, isTypingFinished, value } = state.signup.data[fieldName];
@@ -27,11 +27,13 @@ export default ({
 
 	const { onChange, onBlur } = getActions(fieldName);
 
+	const enhancedValidate = getEnhancedValidator(validate, errorStrings);
+
 	const mapDispatchToProps = dispatch => ({
 		onChange: event => {
 			const target = event.target;
 			const value = target.type === 'checkbox' ? target.checked : target.value;
-			const validityStatus = validate(value);
+			const validityStatus = enhancedValidate(value);
 			dispatch(onChange(value, validityStatus));
 		},
 		onBlur: () => dispatch(onBlur())

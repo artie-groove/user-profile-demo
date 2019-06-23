@@ -1,0 +1,5 @@
+*
+!backend/package*.json
+!backend/src/public
+!backend/build
+!frontend/build

@@ -1,6 +1,6 @@
 import React from 'react';
-import { defineMessages } from 'react-intl';
 import View from './Photo.view';
+import { defineMessages } from 'react-intl';
 
 export const statusCodes = {
 	E_NOT_SELECTED: 	'E_NOT_SELECTED',

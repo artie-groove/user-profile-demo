@@ -1,7 +1,4 @@
-import { statusCodes } from './Lastname.container';
-import { PROPER_VALUE } from '../ValidateableInput/ValidateableInput.factory';
-
-export default function validate(value) {
+export default function validate(value, statusCodes = {}) {
 
 	// Пустая строка
 	if ( value.length === 0 )
@@ -39,5 +36,5 @@ export default function validate(value) {
 		return statusCodes.E_INVALID_FORMAT;
 	}
 
-	return PROPER_VALUE;
+	return true;
 }
