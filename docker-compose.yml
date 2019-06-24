@@ -1,20 +1,18 @@
 version: "3.4"
 services:
   web:
-    image: "groove8/user-profile-server:latest"
-    build: .
+    image: "groove8/user-profile-demo:server"
     user: "root"
     environment:
       DB_HOST: "mongo"
     ports:
       - "80:80"
     volumes:
-      - ./backend/src/public/photos/:/home/node/app/public/photos
+      - user-photos:/home/node/app/public/photos
     depends_on:
       - mongo
   mongo:
-    image: groove8/user-profile-db:latest
-    build: ./db/
+    image: groove8/user-profile-demo:db
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -25,14 +23,6 @@ services:
       DB_PASS: example
     volumes:
       - data:/data/db
-  # mongo-express:
-  #   image: mongo-express
-  #   restart: always
-  #   ports:
-  #     - 8081:8081
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: password
 
 volumes:
   user-photos:
