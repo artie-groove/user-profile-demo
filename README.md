@@ -19,14 +19,14 @@ The application is a demo written in order to apply for a developer position in 
 * JSON Web Token authorization (`express-jwt, jsonwebtoken`)
 * hashing (`js-sha256`)
 * in-app routing (`react-router`)
-* template engine (`react-pug`)
+* Pug template engine (`react-pug`)
 * CSS preprocessing (SASS)
-* HTML/CSS framework (`bootstrap, reactstrap`)
+* Bootstrap HTML/CSS framework (`bootstrap, reactstrap`)
 * typography (`html-entities`)
 
 ## UI languages
-* English
-* Russian
+- [x] English
+- [x] Russian
 
 ## Features
 * Adaptive design
@@ -48,3 +48,8 @@ The easiest way to deploy the app is to spin it up with Docker. Just download `d
 ```bash
 docker-compose up
 ```
+
+## Demo
+The live example is running on a VM on Google Cloud Platform:
+
+http://35.246.108.186
