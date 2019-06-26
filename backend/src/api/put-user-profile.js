@@ -49,9 +49,16 @@ async function dataHandler(req, res) {
 
 	let user = new UserProfile();
 	user = Object.assign(user, keyData, detailsData);
+
+	const { password, ...allDetails } = Object.assign({}, keyData, detailsData);
+	const dataString = Object.keys(allDetails).reduce((prev, current) => {
+		return `${prev}\n${current}: "${allDetails[current]}"`;
+	}, '');
+	console.log(`User data sumbitted: ${dataString}`);
 	
 	// If a photo is attached, move it to the storage
 	if ( req.file ) {
+		console.log(`Photo attached: ${req.file.originalname} [${Math.ceil(req.file.size / 1024)} KB]`);
 		try {
 			const tmpUploadedFilePath = path.resolve(req.file.path);
 			const dstFilePath = path.resolve('public/photos', `${user.username}.jpg`);
@@ -63,6 +70,7 @@ async function dataHandler(req, res) {
 		}
 	}
 
+	console.log("Saving user profile data");
 	user.save(err => {
 		return err
 			? respondFailure(res, err, 500)

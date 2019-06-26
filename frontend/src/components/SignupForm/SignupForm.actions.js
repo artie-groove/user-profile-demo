@@ -2,6 +2,7 @@ export const actionTypes = {
 	FORM_SUBMIT: 			'FORM_SUBMIT',
 	FORM_SUBMIT_RESPONSE: 	'FORM_SUBMIT_RESPONSE',
 	FORM_SUBMIT_FAILURE: 	'FORM_SUBMIT_FAILURE',
+	FORM_RESET: 			'FORM_RESET', 
 }
 
 export const onSubmit = () => ({
@@ -17,3 +18,8 @@ export const onSubmitFailure = (error) => ({
 	type: actionTypes.FORM_SUBMIT_FAILURE,
 	externalError: error
 });
+
+export const onFormReset = () => ({
+	type: actionTypes.FORM_RESET
+});
+

@@ -13,7 +13,7 @@ const formSubmissionLogic = createLogic({
 		successType: 	onSubmitResponse,
 		failType: 		onSubmitFailure
 	},
-	async process({ getState }) {
+	async process({ getState, intl }) {
 		const data = exractFormData(getState().signup.data);
 		await sleeper(1000);
 		return axios({
@@ -23,9 +23,9 @@ const formSubmissionLogic = createLogic({
 				headers: {
 					'Content-Type': 'multipart/form-data',
 				},
-				timeout: 5000
+				timeout: 30000
 			})
-			.catch( error => Promise.reject(ajaxErrorParser(error)) );
+			.catch( error => Promise.reject(ajaxErrorParser(error, intl)) );
 	}
 });
 

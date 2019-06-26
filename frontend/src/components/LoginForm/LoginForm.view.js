@@ -20,7 +20,7 @@ const messages = defineMessages({
 });
 
 export default ({
-	intl: { formatMessage }, isPending, isAuthenticated, externalError, onSubmit, onChange
+	intl: { formatMessage }, isPending, isAuthenticated, externalError, onSubmit, onChange, signupLinkClick
 }) => pug`
 	#LoginForm
 		FadeIn(delay=500)
@@ -56,5 +56,5 @@ export default ({
 
 								FormText.mt-3 #{formatMessage(messages.msgNoAccountQuestion)}
 									| 
-									Link(to="/signup/") #{formatMessage(messages.signupLinkCaption)}
+									Link(to="/signup/" onClick=signupLinkClick) #{formatMessage(messages.signupLinkCaption)}
 `;

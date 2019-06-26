@@ -10,6 +10,8 @@ import passwordConfirmation from './PasswordConfirmation/PasswordConfirmation.re
 import { actionTypes } from './SignupForm.actions';
 import { actionTypes as inputActionTypes } from './ValidateableInput/ValidateableInput.actions';
 
+import initialState from 'initialState.json';
+
 const status = (state = {}, action) => {
 	switch ( action.type ) {
 		case actionTypes.FORM_SUBMIT:
@@ -67,17 +69,34 @@ const status = (state = {}, action) => {
 					}, state.step),
 
 			}
+		
 		default:
 			return state;		
 	}
 }
 
-const data = reduceReducers(approvable, validateable, passwordConfirmation);
+const signupReset = (state, action) => {
+	switch ( action.type ) {
+		case actionTypes.FORM_RESET:
+			return initialState.signup;
 
-const signup = combineReducers({
-	status,
-	data
-});
+		default:
+			return state;
+	}
+}
+
+const signup = reduceReducers(
+	combineReducers({
+		status,
+		data: reduceReducers(
+			approvable,
+			validateable,
+			passwordConfirmation
+		)
+	}),
+	signupReset
+);
+
 
 const formPopulate = (state = {}, action) => {
 	switch ( action.type ) {
