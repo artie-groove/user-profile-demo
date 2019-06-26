@@ -4,8 +4,6 @@ const UserProfile = require("../models/user-profile");
 const validator = require("../utils/validator");
 const { respondSuccess, respondFailure, extractData, isKeyDataUnique } = require("../utils/helpers");
 const { messages } = require('../utils/i18n');
-// const { keyFieldsSchema, detailFieldsSchema } = require("esm")(module)("../schemas/schema-user-profile");
-// import { keyFieldsSchema, detailFieldsSchema } from "../schemas/schema-user-profile";
 const { keyFieldsSchema, detailFieldsSchema } = require("../schemas/schema-user-profile");
 
 const multer = require('multer'); // парсит multipart-form-data
