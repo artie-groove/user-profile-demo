@@ -5,7 +5,7 @@ const dbUser = process.env.DB_USER || "user-service";
 const dbPass = process.env.DB_PASS || "example";
 const dbName = process.env.DB_NAME || "app";
 const dbConnectionString = `mongodb://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`;
-const apiPort = process.env.API_PORT || "80";
+const apiPort = process.env.API_PORT || 80;
 
 module.exports = {
 	jwtSecret, 

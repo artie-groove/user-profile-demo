@@ -7,20 +7,12 @@ import biographyValidator from "../../../frontend/src/components/SignupForm/Biog
 import firstnameValidator from "../../../frontend/src/components/SignupForm/Firstname/Firstname.validator";
 import lastnameValidator from "../../../frontend/src/components/SignupForm/Lastname/Lastname.validator";
 
-const loginFieldsSchema = [
+const keyFieldsSchema = [
 	{
 		name: "username",
 		required: true,
 		validator: usernameValidator
 	},
-	{
-		name: "password",
-		required: true,
-		validator: passwordValidator
-	}
-];
-
-const keyFieldsSchema = [
 	{
 		name: "email",
 		required: true,
@@ -31,9 +23,14 @@ const keyFieldsSchema = [
 		required: true,
 		validator: phoneValidator
 	}
-].concat(loginFieldsSchema);
+];
 
-const detailFieldsSchema = [		
+const detailFieldsSchema = [
+	{
+		name: "password",
+		required: true,
+		validator: passwordValidator
+	},
 	{
 		name: "newsletters",
 		required: false,
@@ -60,6 +57,8 @@ const detailFieldsSchema = [
 		validator: lastnameValidator
 	}
 ];
+
+const loginFieldsSchema = [].concat(keyFieldsSchema[0], detailFieldsSchema[0]);
 
 const allFieldsSchema = keyFieldsSchema.concat(detailFieldsSchema);
 

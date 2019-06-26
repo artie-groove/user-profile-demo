@@ -14,7 +14,7 @@ let router = express.Router();
 
 // Обработчик загрузки изображения
 let uploadHandler = multer({
-	dest: 'uploads/',
+	dest: path.resolve('uploads'),
 	limits: {
 		fileSize: 5 * 1024 * 1024,
 		files: 1,

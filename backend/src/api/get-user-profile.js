@@ -4,9 +4,6 @@ const UserProfile = require("../models/user-profile");
 const validator = require("../utils/validator");
 const { respondSuccess, respondFailure, extractData } = require("../utils/helpers");
 const { messages } = require('../utils/i18n');
-// const { loginFieldsSchema } = require("esm")(module)('../schemas/schema-user-profile');
-// import { loginFieldsSchema } from '../schemas/schema-user-profile';
-const loginFieldsSchema = require('../schemas/schema-user-profile');
 
 let express = require('express');
 let router = express.Router();

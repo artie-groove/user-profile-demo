@@ -8,7 +8,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - user-photos:/home/node/app/public/photos
+      - app-data:/home/node/app/
     depends_on:
       - mongo
   mongo:
@@ -25,7 +25,7 @@ services:
       - data:/data/db
 
 volumes:
-  user-photos:
-    name: user-photos
+  app-data:
+    name: user-profile-demo-app-data
   data:
-    name: mongodb-data
+    name: user-profile-demo-mongodb-data
