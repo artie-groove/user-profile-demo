@@ -1,28 +1,38 @@
 import { defineMessages } from 'react-intl';
 import cookie from 'js-cookie';
 
-const messages = defineMessages({
-	serverConnectionError: "Couldn't connect to server: \"{errorMsg}\". Please, try again later. If you can't submit the form, please contact us. We bring our apologies for the inconvenience."
-});
-
+// Helper to delay execution to imitate long-running operations
+// like fetching data
 export function sleeper(ms) {
 	return new Promise(resolve => setTimeout(() => resolve(), ms));
 }
 
+// Intl messages definition for ajaxErrorParser()
+const messages = defineMessages({
+	serverConnectionError: "Couldn't connect to server: \"{errorMsg}\". Please, try again later. If you can't submit the form, please contact us. We bring our apologies for the inconvenience.",
+	somethingWentWrong: "Something went wrong"
+});
+
+// A callback for parsing and formatting AJAX errors
 export function ajaxErrorParser(error, intl) {
 	let err;
 	if ( error.response ) {
 		// The request was made and the server responded with a status code
-		// that falls out of the range of 2xx 
-		err = `${error.response.data.details}. ${error.response.status} ${error.response.statusText}`;
+		// that falls out of the range of 2xx
+		console.log(intl);
+		const errorDetails = error.response.data.details
+			|| intl.formatMessage(messages.somethingWentWrong);
+
+		err = `${errorDetails}. ${error.response.status} ${error.response.statusText}`;
 	}
 	else if ( error.request ) {
 		// The request was made but no response was received
 		// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
 		// http.ClientRequest in node.js
-		//err = `Не удалось связаться с сервером: "${error.message}". Пожалуйста, повторите попытку позже. Если вам не удалось отправить форму, пожалуйста, свяжитесь с нами. Приносим извинения за доставленные неудобства.`;
-		console.log(error.message);
-		err = intl.formatMessage(messages.serverConnectionError, { errorMsg: error.message });
+		err = intl.formatMessage(
+			messages.serverConnectionError,
+			{ errorMsg: error.message }
+		);
 	}
 	else {
 		// Something happened in setting up the request that triggered an Error
@@ -31,6 +41,7 @@ export function ajaxErrorParser(error, intl) {
 	return err;
 }
 
+// Fetch localized messages stored in localStorage
 export function fetchStoredMessages(localeId) {
 	// First, check if there's a 'locale' value in the local storage
 	const serializedLocale = localStorage.getItem('locale');
@@ -38,11 +49,14 @@ export function fetchStoredMessages(localeId) {
 	
 	// If it's there, check if the data is for the requested locale 
 	const { locale: storedLocaleId, messages } = JSON.parse(serializedLocale);
-	if ( storedLocaleId !== localeId ) return null;
+	if ( storedLocaleId !== localeId )
+		return null;
 
 	return messages;
 }
 
+
+// Use locally stored locale data if present
 export function hydrate(initialState = {}) {
 	// Check if the localized messages are already in the storage
 	const locale = cookie.get('locale') || 'en';

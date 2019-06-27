@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import Form from './LoginForm.container';
 import { onAuthRequest } from '../Auth/Auth.actions';
-import { onSignupLinkClick } from './LoginForm.actions';
-import { onFormReset } from '../SignupForm/SignupForm.actions';
 import { sha256 } from 'js-sha256';
 
 const mapStateToProps = (state) => ({
@@ -20,10 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
 			password: sha256(form.elements['password'].value)
 		};
 		dispatch(onAuthRequest(credentials));
-	},
-	signupLinkClick: () => {
-		dispatch(onSignupLinkClick());
-		dispatch(onFormReset());
 	}
 });
 

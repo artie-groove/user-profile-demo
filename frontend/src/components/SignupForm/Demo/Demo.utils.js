@@ -1,5 +1,7 @@
 import { sleeper } from 'utils'; 
 
+// Fill in the form programmatically one-by-one, typing in
+// the characters with a delay
 export async function simulateFormFillIn(sequences, delay) {
 	for ( let elementId in sequences ) {
 		await runSequence(elementId, sequences[elementId], delay);
@@ -9,7 +11,6 @@ export async function simulateFormFillIn(sequences, delay) {
 
 // --- Internals ---
 
-
 const inputEvent = new Event('input', {bubbles: true});
 const blurEvent = new Event('blur', {bubbles: true});
 const focusEvent = new Event('focus', {bubbles: false});
@@ -17,16 +18,8 @@ const fieldBlurDelayMultiplier = 2;
 const pauseDelayMultiplier = 10;
 
 
-
 function putTextInTextarea(element, value) {
 	element.value = value;
-	// element.innerHTML = value;
-	// setNativeValue(element, value);
-	// const changeEvent = new Event('change', {bubbles: true});
-	// const keypressEvent = new Event('keypress', {bubbles: true});
-	// element.dispatchEvent(inputEvent);
-	// element.dispatchEvent(changeEvent);
-	// element.dispatchEvent(keypressEvent);
 }
 
 async function simulateTypingTextarea(element, sequence, delay) {

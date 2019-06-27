@@ -19,7 +19,7 @@ export const onSubmitFailure = (error) => ({
 	externalError: error
 });
 
-export const onFormReset = () => ({
+export const onSubmitFormReset = () => ({
 	type: actionTypes.FORM_RESET
 });
 

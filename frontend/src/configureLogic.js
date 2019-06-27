@@ -1,8 +1,9 @@
 import { createLogicMiddleware } from 'redux-logic';
-import logic from './rootLogic';
+import logic from './logic';
 
-const deps = {};
-const logicMiddleware = createLogicMiddleware(logic, deps);
+const logicMiddleware = createLogicMiddleware(logic);
+
+// Output events in the logic to browser's console
 logicMiddleware.monitor$.subscribe(
 	x => console.log(x)
 );

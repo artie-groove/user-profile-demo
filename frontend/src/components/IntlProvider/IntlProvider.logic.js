@@ -4,8 +4,6 @@ import { sleeper, ajaxErrorParser, fetchStoredMessages } from 'utils';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-
-
 const localeSwitchLogic = createLogic({
 	type: actionTypes.SWITCH_LOCALE_REQUEST,
 	validate({ action }, allow, reject) {
@@ -30,7 +28,7 @@ const localeSwitchLogic = createLogic({
 		successType: 	onSwitchLocaleResponse,
 		failType: 		onSwitchLocaleFailure
 	},
-	async process({ action }) {
+	async process({ action, intl }) {
 		await sleeper(1000);
 		return axios({
 				url: "/api/get-locale",
@@ -44,7 +42,7 @@ const localeSwitchLogic = createLogic({
 				localStorage.setItem('locale', serializedLocale);
 				return Promise.resolve(data);
 			})
-			.catch( error => Promise.reject(ajaxErrorParser(error)) );
+			.catch( error => Promise.reject(ajaxErrorParser(error, intl)) );
 	}
 });
 

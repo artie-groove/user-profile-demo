@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { injectIntl } from 'react-intl';
 import View from './App.view';
+import { withRouter } from 'react-router';
 
 const Container = ({
 	isAuthenticated,
@@ -8,7 +9,9 @@ const Container = ({
 	localeSwitchError,
 	fetchUserProfile,
 	intl,
-	logicMiddleware
+	logicMiddleware,
+	history,
+	resetUI
 }) => {
 	useEffect(() => {
 		if ( isAuthenticated ) {
@@ -16,6 +19,13 @@ const Container = ({
 		}
 	}, [isAuthenticated, fetchUserProfile]);
 	
+	useEffect(() => {
+		const unsubscribe = history.listen( (location, action) => {
+			resetUI();
+		});
+		return unsubscribe;
+	}, [history, resetUI]);
+
 	useEffect(() => {
 		try {
 			logicMiddleware.addDeps({ intl });
@@ -33,4 +43,4 @@ const Container = ({
 	`;
 }
 
-export default injectIntl(Container);
+export default injectIntl(withRouter(Container));

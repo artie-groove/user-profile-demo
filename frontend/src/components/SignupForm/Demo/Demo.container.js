@@ -7,6 +7,7 @@ const Container = ({
 	caption
 }) => {
 	const onDemo = async () => {
+		// Data to fill in
 		const formData = {
 			"firstname": "Linus",
 			"lastname": "Torvalds",
@@ -28,9 +29,9 @@ const Container = ({
 			}
 		}
 		
-		const delay = 100;
+		const characterTypingDelay = 100;
 
-		await simulateFormFillIn(formData, delay);
+		await simulateFormFillIn(formData, characterTypingDelay);
 
 		// const submitButton = document.getElementById("SubmitButton");
 		// submitButton.addEventListener('focus', scrollIntoElement);

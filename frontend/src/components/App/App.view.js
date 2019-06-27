@@ -1,6 +1,6 @@
 import React from 'react';
 import { defineMessages } from 'react-intl';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from "components/LoginForm";
 import SignupForm from "components/SignupForm";
 import Dashboard from "components/Dashboard";
@@ -21,7 +21,7 @@ const AppView = ({
 	isLocaleSwitchPending,
 	localeSwitchError,
 }) => pug`
-	Router
+	#app
 		Auth
 
 		if isLocaleSwitchPending
@@ -34,16 +34,17 @@ const AppView = ({
 						Col
 							if localeSwitchError
 								ErrorDisplay(title=intl.formatMessage(messages.localeSwitchErrorTitle) errorMsg=localeSwitchError)
-
-							.d-flex.justify-content-end
-								LocaleSwitcher
+							
+							else
+								.d-flex.justify-content-end
+									LocaleSwitcher
 
 			Switch
 				LoginRoute(exact=true path="/login/" isAuthenticated=isAuthenticated)
 
 				Route(exact=true path="/signup/" component=SignupForm)
 				
-				ProtectedRoute(exact=true path="/dashboard/" component=Dashboard isAuthenticated=isAuthenticated redirectTo="/")
+				ProtectedRoute(exact=true path="/dashboard/" component=Dashboard isAuthenticated=isAuthenticated redirectTo="/login")
 				
 				DefaultRoute(isAuthenticated=isAuthenticated)
 `;

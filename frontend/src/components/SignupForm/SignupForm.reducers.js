@@ -1,7 +1,5 @@
 import reduceReducers from 'reduce-reducers';
 import { combineReducers } from 'redux';
-import formStateValid from 'formStateValid.json';
-import formStateInvalid from 'formStateInvalid.json';
 
 import approvable from './ApprovableInput/ApprovableInput.reducer';
 import validateable from './ValidateableInput/ValidateableInput.reducer';
@@ -97,18 +95,4 @@ const signup = reduceReducers(
 	signupReset
 );
 
-
-const formPopulate = (state = {}, action) => {
-	switch ( action.type ) {
-		case actionTypes.FORM_POPULATE_VALID:
-			return { ...formStateValid };
-
-		case actionTypes.FORM_POPULATE_INVALID:
-			return { ...formStateInvalid };
-
-		default:
-			return state;
-	}
-}
-
-export default reduceReducers(signup, formPopulate); 
+export default signup;

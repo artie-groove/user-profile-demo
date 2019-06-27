@@ -1,7 +1,8 @@
 export const actionTypes = {
 	SWITCH_LOCALE_REQUEST: 	"SWITCH_LOCALE_REQUEST",
 	SWITCH_LOCALE_RESPONSE: "SWITCH_LOCALE_RESPONSE",
-	SWITCH_LOCALE_FAILURE: 	"SWITCH_LOCALE_FAILURE"
+	SWITCH_LOCALE_FAILURE: 	"SWITCH_LOCALE_FAILURE",
+	SWITCH_LOCALE_RESET: 	"SWITCH_LOCALE_RESET"
 }
 
 export const onSwitchLocaleRequest = (localeId) => ({
@@ -19,8 +20,13 @@ export const onSwitchLocaleFailure = (error) => ({
 	error
 });
 
+export const onSwitchLocaleReset = () => ({
+	type: actionTypes.SWITCH_LOCALE_RESET
+});
+
 export default {
 	onSwitchLocaleRequest,
 	onSwitchLocaleResponse,
-	onSwitchLocaleFailure
+	onSwitchLocaleFailure,
+	onSwitchLocaleReset
 }

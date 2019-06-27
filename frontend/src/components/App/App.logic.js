@@ -3,6 +3,9 @@ import { actionTypes, onDataFetchResponse, onDataFetchFailure } from './App.acti
 import { sleeper, ajaxErrorParser } from 'utils';
 import { defineMessages } from 'react-intl';
 import axios from 'axios';
+import { onAuthReset } from 'components/Auth/Auth.actions';
+import { onSubmitFormReset } from 'components/SignupForm/SignupForm.actions';
+import { onSwitchLocaleReset } from 'components/IntlProvider/IntlProvider.actions';
 
 const messages = defineMessages({
 	notAuthorizedException: "Not authorized. Probably due to an application error. Try logging in again"
@@ -31,6 +34,17 @@ const dataFetchLogic = createLogic({
 	}
 });
 
+const uiResetLogic = createLogic({
+	type: actionTypes.UI_RESET,
+	process(deps, dispatch, done) {
+		dispatch(onAuthReset());
+		dispatch(onSubmitFormReset());
+		dispatch(onSwitchLocaleReset());
+		done();
+	}
+})
+
 export default [
 	dataFetchLogic,
+	uiResetLogic
 ];

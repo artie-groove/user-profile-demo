@@ -2,6 +2,7 @@ export const actionTypes = {
 	'DATA_FETCH_REQUEST': 'DATA_FETCH_REQUEST',
 	'DATA_FETCH_RESPONSE': 'DATA_FETCH_RESPONSE',
 	'DATA_FETCH_FAILURE': 'DATA_FETCH_FAILURE',
+	'UI_RESET': 'UI_RESET'
 }
 
 export const onDataFetchRequest = () => ({
@@ -16,4 +17,8 @@ export const onDataFetchResponse = (data) => ({
 export const onDataFetchFailure = (error) => ({
 	type: actionTypes.DATA_FETCH_FAILURE,
 	error
+});
+
+export const onUiReset = () => ({
+	type: actionTypes.UI_RESET,
 });

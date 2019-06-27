@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Component from './App.container';
-import { onDataFetchRequest } from './App.actions';
+import { onDataFetchRequest, onUiReset } from './App.actions';
 
 const mapStateToProps = (state) => ({
 	isAuthenticated: state.auth.isAuthenticated,
@@ -11,6 +11,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	fetchUserProfile: () => {
 		dispatch(onDataFetchRequest());
+	},
+	resetUI: () => {
+		dispatch(onUiReset());
 	}
 });
 

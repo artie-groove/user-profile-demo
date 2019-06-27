@@ -2,6 +2,7 @@ import 'sass/index.sass';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from 'components/App';
 import * as serviceWorker from './serviceWorker';
 import logicMiddleware from 'configureLogic';
@@ -18,13 +19,15 @@ addLocaleData(ru);
 // Hydrate the app with the data stored locally
 const initialState = hydrate(externalState);
 
-
+// Create a store initialized with the state and middleware
 const store = configureStore(initialState, logicMiddleware);
 
 ReactDOM.render(
 	<Provider store={store}>
 		<IntlProvider>
-			<App logicMiddleware={logicMiddleware} />
+			<Router>
+				<App logicMiddleware={logicMiddleware} />
+			</Router>
 		</IntlProvider>
 	</Provider>,
 	document.getElementById('root'));

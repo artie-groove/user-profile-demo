@@ -3,6 +3,7 @@ export const actionTypes = {
 	AUTH_RESPONSE: 	'AUTH_RESPONSE',
 	AUTH_FAILURE: 	'AUTH_FAILURE',
 	AUTH_LOGOUT: 	'AUTH_LOGOUT',
+	AUTH_RESET: 	'AUTH_RESET'
 }
 
 export const onAuthRequest = (data) => ({
@@ -22,6 +23,10 @@ export const onAuthFailure = (error) => ({
 
 export const onLogout = () => ({
 	type: actionTypes.AUTH_LOGOUT
+});
+
+export const onAuthReset = () => ({
+	type: actionTypes.AUTH_RESET
 })
 
 

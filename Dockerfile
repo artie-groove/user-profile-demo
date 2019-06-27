@@ -7,7 +7,7 @@ COPY		backend/package*.json ./
 ENV			NODE_ENV=production
 RUN			npm install
 
-COPY		backend/build ./
+COPY		backend/build/server.js ./
 COPY		backend/src/public ./public
 COPY		frontend/build ./public
 
