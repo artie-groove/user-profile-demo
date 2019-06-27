@@ -1,6 +1,5 @@
 import React from 'react';
 import { CustomInput, Input, Label } from 'reactstrap';
-import { scrollIntoElement } from '../../../utils';
 
 const DefaultInput = ({
 	type, name, label, value, valid, invalid, disabled, onChange, onBlur, children
@@ -18,7 +17,6 @@ const DefaultInput = ({
 			disabled=disabled
 			onChange=onChange
 			onBlur=onBlur
-			onFocus=scrollIntoElement
 		)
 
 		= children

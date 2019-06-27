@@ -60,6 +60,13 @@ export function hydrate(initialState = {}) {
 	return initialState;
 }
 
+
+/*
+
+// Scrolls the viewport to put focused element in the middle
+// Probably, not the best idea to intervene in user scrolling contols
+// so I commented it out
+
 export async function scrollIntoElement(e) {
 	const element = e.target;
 	const rect = element.getBoundingClientRect();
@@ -90,3 +97,4 @@ export async function scrollIntoElement(e) {
 
 	}, 0, stepsTotal);
 }
+*/
