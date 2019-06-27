@@ -4,7 +4,8 @@ export const actionTypes = {
 	RESPONSE_APPROVAL_ERROR: 	'RESPONSE_APPROVAL_ERROR'
 }
 
-export function getActions(fieldName) {
+export function getActions(fieldName)
+{
 	const requestApproval = () => ({
 		type: actionTypes.REQUEST_APPROVAL,
 		fieldName

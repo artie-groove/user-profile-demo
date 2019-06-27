@@ -10,7 +10,7 @@ export function sleeper(ms) {
 // Intl messages definition for ajaxErrorParser()
 const messages = defineMessages({
 	serverConnectionError: "Couldn't connect to server: \"{errorMsg}\". Please, try again later. If you can't submit the form, please contact us. We bring our apologies for the inconvenience.",
-	somethingWentWrong: "Something went wrong"
+	somethingWentWrong: "Something went wrong. Probably, due to a server fault or connection problems. Please, try again later. If you can't submit the form, please contact us. We bring our apologies for the inconvenience"
 });
 
 // A callback for parsing and formatting AJAX errors
@@ -56,7 +56,7 @@ export function fetchStoredMessages(localeId) {
 }
 
 
-// Use locally stored locale data if present
+// Init Redux store with locally available data
 export function hydrate(initialState = {}) {
 	// Check if the localized messages are already in the storage
 	const locale = cookie.get('locale') || 'en';
@@ -76,7 +76,6 @@ export function hydrate(initialState = {}) {
 
 
 /*
-
 // Scrolls the viewport to put focused element in the middle
 // Probably, not the best idea to intervene in user scrolling contols
 // so I commented it out

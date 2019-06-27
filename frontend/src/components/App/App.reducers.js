@@ -4,7 +4,8 @@ const userProfile = (state = {
 	isPending: false,
 	data: undefined
 }, action) => {
-	switch ( action.type ) {
+	switch ( action.type )
+	{
 		case actionTypes.DATA_FETCH_REQUEST:
 			return {
 				isPending: true,

@@ -7,8 +7,8 @@ import Dashboard from "components/Dashboard";
 import ErrorDisplay from 'components/ErrorDisplay';
 import Auth from "components/Auth";
 import LocaleSwitcher from "components/LocaleSwitcher";
-import { Container, Row, Col } from "reactstrap";
 import FullscreenSpinner from 'components/FullscreenSpinner';
+import { Container, Row, Col } from "reactstrap";
 import './App.view.sass';
 
 const messages = defineMessages({

@@ -8,7 +8,7 @@ const comparePasswordsOnFinishedEditing = createLogic({
 	type: validateableInputActionTypes.FIELD_EDITED,
 	validate({ getState, action }, allow, reject) {
 		if ( action.fieldName === 'passwordConfirmation' ) {
-			// оставляем в покое пустое поле
+			// Don't touch an empty field
 			const { value } = getState().signup.data['passwordConfirmation'] || {};
 			if ( value && value.length ) {
 				allow(action);
@@ -16,21 +16,12 @@ const comparePasswordsOnFinishedEditing = createLogic({
 		}
 		reject(action);
 	},
-	// processOptions: {
-	// 	successType: 	passwordsCheckedAction,
-	// 	failType: 		passwordValidityError
-	// },
 	process({ getState, action }) {
 		const state = getState();
-		// Так как Redux изначально не имеет представления о составе полей,
-		// он не может инициализирвоать поле [fieldName] в хранилище
-		// (состав полей определяется во время выполнения),
-		// мы должны "подложить" {} на случай, если поле будет проверяться
-		// после расфокусировки соотвествующего input'a с пустым значением,
-		// когда хранилище ещё ничего о нём не знает 
-		const { validityStatus: passwordValidityStatus, value: passwordValue } = state.signup.data['password'] || {};
+		// Getting the values and statuses for password and its confirmation
+		const { validityStatus: passwordValidityStatus, value: passwordValue } = state.signup.data['password'];
 		const { validityStatus: passwordConfirmationValidityStatus, value: passwordConfirmationValue } = state.signup.data['passwordConfirmation'] || {};
-		// если поле пароля правильно заполнено
+		// If the both password fields are filled in correctly
 		if 	(
 				passwordValidityStatus === PROPER_VALUE 
 				&&

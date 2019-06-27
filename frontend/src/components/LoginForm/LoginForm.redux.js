@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Form from './LoginForm.container';
-import { onAuthRequest } from '../Auth/Auth.actions';
+import { onAuthRequest } from 'components/Auth/Auth.actions';
 import { sha256 } from 'js-sha256';
 
 const mapStateToProps = (state) => ({

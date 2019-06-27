@@ -1,6 +1,6 @@
 import { actionTypes } from './ApprovableInput.actions';
 
-
+// Single field reducer
 const fieldData = (state = {}, action) => {
 	switch ( action.type ) {
 		case actionTypes.REQUEST_APPROVAL:
@@ -26,8 +26,12 @@ const fieldData = (state = {}, action) => {
 	}
 }
 
+// Universal (any field) reducer that uses
+// previously defined single-field reducer
 const data = (state = {}, action) => {
-	if ( !action.fieldName ) return state;
+	if ( !action.fieldName )
+		return state;
+	
 	return {
 		...state,
 		[action.fieldName]: fieldData(state[action.fieldName], action)

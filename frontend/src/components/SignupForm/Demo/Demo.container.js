@@ -1,7 +1,6 @@
 import React from 'react';
 import View from './Demo.view';
 import { simulateFormFillIn } from './Demo.utils';
-// import { scrollIntoElement } from 'utils';
 
 const Container = ({
 	caption
@@ -32,11 +31,6 @@ const Container = ({
 		const characterTypingDelay = 100;
 
 		await simulateFormFillIn(formData, characterTypingDelay);
-
-		// const submitButton = document.getElementById("SubmitButton");
-		// submitButton.addEventListener('focus', scrollIntoElement);
-		// const focusEvent = new Event('focus');
-		// submitButton.dispatchEvent(focusEvent);
 	}
 
 	return pug`

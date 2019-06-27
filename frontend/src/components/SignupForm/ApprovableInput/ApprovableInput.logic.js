@@ -7,8 +7,9 @@ import { sleeper, ajaxErrorParser } from 'utils';
 
 const fieldApprovalLogic = createLogic({
 	type: validateableInputActionTypes.FIELD_EDITED,
-	validate({ getState, action, ctx }, allow, reject) {
-		// only apply the logic for the following fields
+	validate({ getState, action, ctx }, allow, reject)
+	{
+		// Only apply the logic for the following fields
 		const approvableFields = [
 			'username',
 			'email',
@@ -19,25 +20,27 @@ const fieldApprovalLogic = createLogic({
 			return reject(action);
 		}
 		const state = getState();
-		// Так как Redux изначально не имеет представления о составе полей,
-		// он не может инициализирвоать поле [fieldName] в хранилище
-		// (состав полей определяется во время выполнения),
-		// мы должны "подложить" {} на случай, если поле будет проверяться
-		// после расфокусировки соотвествующего input'a с пустым значением,
-		// когда хранилище ещё ничего о нём не знает 
 		const { validityStatus, value } = state.signup.data[fieldName];
-		// если поле правильно заполнено
-		if ( validityStatus === PROPER_VALUE ) {
-			// имя поля "зашито" в action creator'ах
-			// поэтому мы получаем их здесь и передаём в process через контекст ctx
+		
+		// If the field is filled in properly:		
+		if ( validityStatus === PROPER_VALUE )
+		{
+			// 1. Get action creators for the field from a factory,
+			//    because field's name needs to be sticked to
+			//    the action by design
 			const { requestApproval, responseApproval, responseApprovalError } = getActions(fieldName);
+			
+			// 2. Pass that data to the 'ctx' variable to use it
+			//    later in process() handler
 			Object.assign(ctx, { requestApproval, responseApproval, responseApprovalError, fieldName, value });
-			// разрешаем обработку в process и передаём action далее по конвейеру
+			
+			// Allow processing the action and forward it to the next middleware
 			allow(action);
 		}
-		else reject(action); // мимо process, в следующее middleware
+		else reject(action); // bypass process() handler, skip to next middleware
 	},
-	process({ ctx, intl }, dispatch, done) {
+	async process({ ctx, appContext: { intl } }, dispatch, done)
+	{
 		dispatch(ctx.requestApproval());
 		const config = {
 			url: "/api/check-uniqueness",
@@ -46,14 +49,16 @@ const fieldApprovalLogic = createLogic({
 				value: ctx.value
 			}
 		};
-		sleeper(1000)
-			.then( () => axios(config) )
-			.then(response => dispatch(ctx.responseApproval(response.data)))
-			.catch(error => {
-				const err = ajaxErrorParser(error, intl); 
-				dispatch(ctx.responseApprovalError(err));
-			})
-			.then(() => done());
+		await sleeper(1000);
+		try {
+			const response = await axios(config);
+			dispatch(ctx.responseApproval(response.data));
+		}
+		catch ( error ) {
+			const err = ajaxErrorParser(error, intl); 
+			dispatch(ctx.responseApprovalError(err));
+		}
+		done();
 	}
 });
 

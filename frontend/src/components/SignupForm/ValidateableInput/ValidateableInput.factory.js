@@ -11,7 +11,7 @@ export const PROPER_VALUE = 'PROPER_VALUE';
 
 export default ({
 	/* values */	fieldName, inputType, errorStrings, inProgressFilter, validMsg,
-	/* handlers */ 	validate = () => true
+	/* handlers */ 	validate = () => true // by default the value is considered correct
 }) => {
 	const mapStateToProps = (state, ownProps) => {
 		const { validityStatus, isTypingFinished, value } = state.signup.data[fieldName];
@@ -25,10 +25,14 @@ export default ({
 		}
 	};
 
+	// Getting pre-configured action handlers for the input
 	const { onChange, onBlur } = getActions(fieldName);
 
+	// Transforming supplied validation function and provided error strings object
+	// into a function that utilizes both to return the correct result code
 	const enhancedValidate = getEnhancedValidator(validate, errorStrings);
 
+	// Wrapping view component with Redux
 	const mapDispatchToProps = dispatch => ({
 		onChange: event => {
 			const target = event.target;
@@ -44,14 +48,14 @@ export default ({
 	  mapDispatchToProps
 	)(View);
 
-
+	// Setting properties' type contstraints
 	Component.propTypes = {
 		fieldName: PropTypes.string.isRequired,
 		inputType: PropTypes.oneOf(['text', 'textarea', 'email', 'password', 'tel', 'date', 'checkbox', 'switch']).isRequired
 	}
 
+	// Picking specific input component depending on the type
 	let InputComponent;
-
 	switch ( inputType ) {
 		case 'checkbox':
 		case 'switch':
@@ -62,6 +66,7 @@ export default ({
 			InputComponent = DefaultInput
 	}
 
+	// Finally, assemblying the configured input component
 	const Container = ({
 		isDisabled, isInvalid = false, isValid = false, errorMsg, children, label, intl
 	}) => {

@@ -9,14 +9,18 @@ const authLogic = createLogic({
 		successType: 	onAuthResponse,
 		failType: 		onAuthFailure
 	},
-	async process({ action, intl }) {		
+	async process({ action,  appContext: { intl } }) {
 		await sleeper(1000);
-		return axios({
+		try {
+			const response = await axios({
 				url: "/api/auth",
 				params: action.data			
-			})
-			.then( (response) => response.data.data )
-			.catch( (error) => Promise.reject(ajaxErrorParser(error, intl)));
+			});
+			return response.data.data;
+		}
+		catch ( error ) {
+			return Promise.reject(ajaxErrorParser(error, intl));
+		}
 	}
 });
 

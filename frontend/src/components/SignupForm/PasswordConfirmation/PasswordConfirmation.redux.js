@@ -6,7 +6,6 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		isValid: isValid && isTypingFinished,
 	}
-
 }
 
 export default connect(mapStateToProps)(Component);

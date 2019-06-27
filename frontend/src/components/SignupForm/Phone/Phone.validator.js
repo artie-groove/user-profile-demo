@@ -1,14 +1,14 @@
 export default function validate(value, statusCodes = {}) {
 
-	// Пустая строка
+	// Empty string
 	if ( value.length === 0 )
 		return statusCodes.E_EMPTY;
 
-	// Максимум - 30 символов 
-	if ( value.length > 30 )
+	// Maximum 20 characters
+	if ( value.length > 20 )
 		return statusCodes.E_TOO_LONG;
 	
-	// Первый символ должен быть буквой
+	// First character must be a letter
 	const firstSymbolRegex = /^\+/;
 	let isValid = firstSymbolRegex.test(value.charAt(0));
 	if ( ! isValid ) {
@@ -22,14 +22,14 @@ export default function validate(value, statusCodes = {}) {
 		return statusCodes.E_INVALID_CHARS;
 	}
 	
-	// Номер должен соответствовать формату	
+	// Phone number should comply with the format
 	const phoneGrammarRegex = /^\+[0-9]{1,3}(?:(?:[- ][0-9]{2,4}){3,4}|[- ]?[0-9]{5,10})$/;
 	isValid = phoneGrammarRegex.test(value);
 	if ( ! isValid ) {
 		return statusCodes.E_INVALID_FORMAT;
 	}
 
-	// Минимум - 5 символов
+	// Minimum 10 characters
 	if ( value.length < 10 ) 
 		return statusCodes.E_TOO_SHORT;
 

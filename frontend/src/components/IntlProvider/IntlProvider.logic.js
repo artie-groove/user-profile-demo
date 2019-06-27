@@ -28,21 +28,24 @@ const localeSwitchLogic = createLogic({
 		successType: 	onSwitchLocaleResponse,
 		failType: 		onSwitchLocaleFailure
 	},
-	async process({ action, intl }) {
+	async process({ action, appContext: { intl } }) {
 		await sleeper(1000);
-		return axios({
+		try {
+			const response = await axios({
 				url: "/api/get-locale",
 				params: {
 					id: action.localeId
 				}
-			})
-			.then( async (response) => {
-				const data = response.data.data;
-				const serializedLocale = JSON.stringify(data);
-				localStorage.setItem('locale', serializedLocale);
-				return Promise.resolve(data);
-			})
-			.catch( error => Promise.reject(ajaxErrorParser(error, intl)) );
+			});
+			// Save fetched locale locally and yield the data
+			const data = response.data.data;
+			const serializedLocale = JSON.stringify(data);
+			localStorage.setItem('locale', serializedLocale);
+			return Promise.resolve(data);
+		}
+		catch ( error ) {
+			return Promise.reject(ajaxErrorParser(error, intl));
+		}
 	}
 });
 

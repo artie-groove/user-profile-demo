@@ -2,10 +2,13 @@ import { connect } from 'react-redux';
 import { PROPER_VALUE } from '../ValidateableInput/ValidateableInput.factory';
 import Component from 'components/SubmitButton';
 
+// Field values are valid if they adhere to the field format
 const areAllFieldsValid = (fields) => fields.every(field => field.validityStatus === PROPER_VALUE);
 
+// Field values approval is marked in 'isApproved' property
 const areAllApprovableFieldsApproved = (fields) => fields.every(field => field.isApproved !== false );
 
+// Ultimate check of the form data
 const isFormFilledInCorrectly = (state) => {
 	const formData = state.signup.data;
 	const indicators = [

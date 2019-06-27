@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Row, Col, Card, CardTitle, CardText, CustomInput } from 'reactstrap';
 import FadeIn from 'react-fade-in';
 import FullscreenSpinner from 'components/FullscreenSpinner';
+import ErrorDisplay from 'components/ErrorDisplay';
 import LogoutButton from './LogoutButton';
-import ErrorDisplay from '../ErrorDisplay';
 import './Dashboard.view.sass';
 import { injectIntl, defineMessages } from 'react-intl';
 

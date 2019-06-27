@@ -1,37 +1,42 @@
 import React, { useEffect } from 'react';
 import { injectIntl } from 'react-intl';
-import View from './App.view';
 import { withRouter } from 'react-router';
+import View from './App.view';
 
 const Container = ({
 	isAuthenticated,
 	isLocaleSwitchPending,
 	localeSwitchError,
 	fetchUserProfile,
-	intl,
 	logicMiddleware,
+	appContext,
+	intl,
 	history,
-	resetUI
+	resetUI,
 }) => {
 	useEffect(() => {
+		// Utilize the global 'appContext' variable from the root module
+		// to pass changing 'intl' to redux-logic 'process()' handler
+		// to enable translations in utility functions outside components
+		logicMiddleware.addDeps({ appContext });
+		appContext.intl = intl;
+	}, [appContext, intl, logicMiddleware]);
+
+	useEffect(() => {
+		// Pull out the user profile data right after the user authenticated
 		if ( isAuthenticated ) {
 			fetchUserProfile();
 		}
 	}, [isAuthenticated, fetchUserProfile]);
 	
 	useEffect(() => {
+		// Subscribe to URL change events to reset UI every time
+		// user travels through screens
 		const unsubscribe = history.listen( (location, action) => {
 			resetUI();
 		});
 		return unsubscribe;
 	}, [history, resetUI]);
-
-	useEffect(() => {
-		try {
-			logicMiddleware.addDeps({ intl });
-		}
-		catch (e) {}
-	}, [intl, logicMiddleware]);
 	
 	return pug`
 		View(

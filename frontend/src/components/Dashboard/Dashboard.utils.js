@@ -1,6 +1,11 @@
-export function postProcessUserProfile(userProfileInfo) {
+export function postProcessUserProfile(userProfileInfo)
+{
+	// Create the Date object
 	userProfileInfo.birthdate = new Date(userProfileInfo.birthdate);
+	
+	// Calculate user's age
 	userProfileInfo.age = calculateAge(userProfileInfo.birthdate);
+	
 	return userProfileInfo;
 }
 

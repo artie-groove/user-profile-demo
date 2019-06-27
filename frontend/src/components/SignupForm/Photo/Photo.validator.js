@@ -1,15 +1,15 @@
 export default function validate(file, statusCodes = {}) {
-	// Пустая строка
+	// Empty string
 	if ( ! file )
 		return statusCodes.E_NOT_SELECTED;
 
-	// Только JPG и PNG
+	// Only JPG and PNG
 	const ext = file.name.split('.').pop().toLowerCase();
 	const isValidExtention = ['jpg', 'png'].some( acceptedExt => acceptedExt === ext );
 	if ( ! isValidExtention )
 		return statusCodes.E_WRONG_EXTENTION;
 
-	// Максимум - 5 МБ
+	// Maximum size: 5 MB
 	if ( file.size > 5 * 1024 * 1024 )
 		return statusCodes.E_TOO_BIG;
 

@@ -17,20 +17,25 @@ const dataFetchLogic = createLogic({
 		successType: 	onDataFetchResponse,
 		failType: 		onDataFetchFailure
 	},
-	async process({ action, getState, intl }) {
+	async process({ action, getState, appContext: { intl }}) 
+	{
 		const { token } = getState().auth;
 		if ( ! token ) {
 			return Promise.reject(intl.formatMessage(messages.notAuthorizedException));
 		}
 		await sleeper(3000);
-		return axios({
+		try {
+			const response = await axios({
 				url: "/api/get-user-profile",
 				headers: {
 					'Authorization': `Bearer ${token}`
 				}
-			})
-			.then( response => response.data.data )
-			.catch( error => Promise.reject(ajaxErrorParser(error)) );
+			});
+			return Promise.resolve(response.data.data);
+		}
+		catch ( error ) {
+			return Promise.reject(ajaxErrorParser(error, intl));
+		}
 	}
 });
 
@@ -42,7 +47,7 @@ const uiResetLogic = createLogic({
 		dispatch(onSwitchLocaleReset());
 		done();
 	}
-})
+});
 
 export default [
 	dataFetchLogic,

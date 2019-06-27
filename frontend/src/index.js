@@ -22,11 +22,17 @@ const initialState = hydrate(externalState);
 // Create a store initialized with the state and middleware
 const store = configureStore(initialState, logicMiddleware);
 
+// Since redux-logic doesn't allow changing dependencies in runtime
+// this object can be used as a dependency to pass 'intl' object
+// as its property. Value is assinged in App.container.js upon
+// changes in 'intl' (initially and after user changes locale)
+let appContext = {};
+
 ReactDOM.render(
 	<Provider store={store}>
 		<IntlProvider>
 			<Router>
-				<App logicMiddleware={logicMiddleware} />
+				<App logicMiddleware={logicMiddleware} appContext={appContext} />
 			</Router>
 		</IntlProvider>
 	</Provider>,

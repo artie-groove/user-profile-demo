@@ -13,7 +13,7 @@ const formSubmissionLogic = createLogic({
 		successType: 	onSubmitResponse,
 		failType: 		onSubmitFailure
 	},
-	async process({ getState, intl }) {
+	async process({ getState, appContext: { intl } }) {
 		const data = exractFormData(getState().signup.data);
 		await sleeper(1000);
 		return axios({

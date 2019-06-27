@@ -15,6 +15,7 @@ export const onBlur = (fieldName) => ({
 	fieldName
 });
 
+// Action factory
 export function getActions(fieldName) {
 	const onChangeFixed = (value, validityStatus) => onChange(fieldName, value, validityStatus);
 	const onBlurFixed = () => onBlur(fieldName);

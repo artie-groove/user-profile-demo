@@ -1,10 +1,10 @@
 export default function validate(value, statusCodes) {
 
-	// Пустая строка
+	// Empty string
 	if ( value.length === 0 )
 		return statusCodes.E_EMPTY;
 
-	// Максимум - 128 символов 
+	// Maximum 128 characters 
 	if ( value.length > 128 )
 		return statusCodes.E_TOO_LONG;
 	
@@ -19,10 +19,10 @@ export default function validate(value, statusCodes) {
 		return statusCodes.E_INVALID_FORMAT;
 	}
 
-	// Пароль должен содержать как минимум две группы символов
-	// 1) буквы латинского алфавита
-	// 2) цифры
-	// 3) спецсимволы
+	// Password must contain at least two character groups
+	// 1) Latin letters
+	// 2) Digits
+	// 3) Special characters
 	regexp = /[a-zA-Z]/;
 	const hasLetters = regexp.test(value);
 
@@ -35,6 +35,7 @@ export default function validate(value, statusCodes) {
 	if ( hasLetters + hasDigits + hasSymbols < 2 )
 		return statusCodes.E_INSUFFICIENT;
 
+	// Minimum 8 characters
 	if ( value.length < 8 )
 		return statusCodes.E_TOO_SHORT;
 

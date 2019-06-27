@@ -1,5 +1,6 @@
 import { actionTypes } from './ValidateableInput.actions';
 
+// Single field reducer
 const fieldData = (state = {}, action) => {
 	switch ( action.type ) {
 		case actionTypes.VALUE_CHANGED:
@@ -21,6 +22,8 @@ const fieldData = (state = {}, action) => {
 	}
 }
 
+// Universal (any field) reducer that uses
+// previously defined single-field reducer
 const data = (state = {}, action) => {
 	if ( !action.fieldName ) return state;
 	return {
