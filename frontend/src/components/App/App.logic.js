@@ -3,7 +3,7 @@ import { actionTypes, onDataFetchResponse, onDataFetchFailure } from './App.acti
 import { sleeper, ajaxErrorParser } from 'utils';
 import { defineMessages } from 'react-intl';
 import axios from 'axios';
-import { onAuthReset } from 'components/Auth/Auth.actions';
+import { onAuthReset, onLogout } from 'components/Auth/Auth.actions';
 import { onSubmitFormReset } from 'components/SignupForm/SignupForm.actions';
 import { onSwitchLocaleReset } from 'components/IntlProvider/IntlProvider.actions';
 
@@ -13,11 +13,7 @@ const messages = defineMessages({
 
 const dataFetchLogic = createLogic({
 	type: actionTypes.DATA_FETCH_REQUEST,
-	processOptions: {
-		successType: 	onDataFetchResponse,
-		failType: 		onDataFetchFailure
-	},
-	async process({ action, getState, appContext: { intl }}) 
+	async process({ action, getState, appContext: { intl }}, dispatch, done) 
 	{
 		const { token } = getState().auth;
 		if ( ! token ) {
@@ -31,11 +27,14 @@ const dataFetchLogic = createLogic({
 					'Authorization': `Bearer ${token}`
 				}
 			});
-			return Promise.resolve(response.data.data);
+			dispatch(onDataFetchResponse(response.data.data));
 		}
 		catch ( error ) {
-			return Promise.reject(ajaxErrorParser(error, intl));
+			dispatch(onDataFetchFailure(ajaxErrorParser(error, intl)));
+			await sleeper(3000);
+			dispatch(onLogout());
 		}
+		done();
 	}
 });
 

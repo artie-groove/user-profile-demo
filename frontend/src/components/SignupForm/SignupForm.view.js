@@ -60,7 +60,7 @@ const messages = defineMessages({
 });
 
 const View = ({
-	intl: { formatMessage }, onSubmit, isPending, externalError, isRegistered, onPopulateValidClick, onPopulateInvalidClick, steps, onFocus
+	intl: { formatMessage }, onSubmit, isPending, externalError, isRegistered, steps
 }) => pug`
 	#SignupForm
 		FadeIn(delay=500)
@@ -80,7 +80,7 @@ const View = ({
 										Col(md=6).mb-5.mb-md-0
 											Firstname(label=formatMessage(messages.firstNameLabel))
 
-										Col(md=6 onFocus=onFocus)
+										Col(md=6)
 											Lastname(label=formatMessage(messages.lastNameLabel))
 									
 									.step(className=steps[0])
@@ -165,7 +165,7 @@ const View = ({
 											)
 
 									.step(className=steps.showProceedButton)
-										.proceedBtn &darr;
+										a.proceedBtn &darr;
 
 									if externalError
 										ErrorDisplay(title=formatMessage(messages.signupErrorTitle) errorMsg=externalError)
