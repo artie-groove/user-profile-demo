@@ -55,7 +55,7 @@
 	"components.SignupForm.Phone.rejected": "This phone number has already been in use. Please, choose another one",
 	"components.SignupForm.Photo.E_NOT_SELECTED": "Please, choose a photo for your profile",
 	"components.SignupForm.Photo.E_TOO_BIG": "File size shouldn't exceed 5 MB",
-	"components.SignupForm.Photo.E_WRONG_EXTENTION": "We only support files of JPG and PNG formats",
+	"components.SignupForm.Photo.E_WRONG_IMAGE_TYPE": "We only support images of JPEG format",
 	"components.SignupForm.Photo.photoPickerButtonCaption": "Pick a photo",
 	"components.SignupForm.Username.E_EMPTY": "This field is required. Please, come up with a username",
 	"components.SignupForm.Username.E_FIRST_LETTER": "Username should begin with a lowercase Latin character",

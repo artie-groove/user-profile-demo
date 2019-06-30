@@ -21,6 +21,7 @@ const View = ({
 			invalid=invalid
 			disabled=isDisabled
 			onChange=onChange
+			accept="image/jpeg"
 		)
 
 		Input(

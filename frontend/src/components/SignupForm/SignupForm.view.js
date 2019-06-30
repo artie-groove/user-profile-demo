@@ -165,7 +165,7 @@ const View = ({
 											)
 
 									.step(className=steps.showProceedButton)
-										a.proceedBtn &darr;
+										button.proceedBtn(type="button") &darr;
 
 									if externalError
 										ErrorDisplay(title=formatMessage(messages.signupErrorTitle) errorMsg=externalError)

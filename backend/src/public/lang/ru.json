@@ -55,7 +55,7 @@
 	"components.SignupForm.Phone.rejected": "Этот номер уже используется кем-то. Пожалуйста, используйте другой",
 	"components.SignupForm.Photo.E_NOT_SELECTED": "Пожалуйста, выберите фото для вашего профиля",
 	"components.SignupForm.Photo.E_TOO_BIG": "Размер файла не&nbsp;должен превышать 5&nbsp;МБ",
-	"components.SignupForm.Photo.E_WRONG_EXTENTION": "Мы&nbsp;поддерживаем только файлы форматов JPG и&nbsp;PNG",
+	"components.SignupForm.Photo.E_WRONG_IMAGE_TYPE": "Мы&nbsp;поддерживаем только изображения формата JPEG",
 	"components.SignupForm.Photo.photoPickerButtonCaption": "Выберите фото",
 	"components.SignupForm.Username.E_EMPTY": "Это обязательное поле. Пожалуйста, придумайте имя",
 	"components.SignupForm.Username.E_FIRST_LETTER": "Имя должно начинаться со&nbsp;строчной буквы латинского алфавита",
