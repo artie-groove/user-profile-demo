@@ -46,7 +46,7 @@ const messages = defineMessages({
 	birthdateHint: "Please, choose the date from the popup calendar",
 	biographyLabel: "Short biography",
 	photoLabel: "Photo",
-	photoHint: "PNG and JPEG files only. Maximum size - 5 MB",
+	photoHint: "JPEG files only. Maximum size - 5 MB",
 	personalInformationProcessingLabel: "I give my consent to process my personal data",
 	personalInformationProcessingHint: "According to Russia's federal law from 27/07/2006 number 152-FZ 'On personal data'",
 	submitButtonCaption: "Sign up",

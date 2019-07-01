@@ -84,7 +84,7 @@
 	"components.SignupForm.personalInformationProcessingLabel": "Я&nbsp;даю согласие на&nbsp;обработку моих персональных данных",
 	"components.SignupForm.phoneHint": "Номер телефона в&nbsp;формате &lt;код страны&gt; &lt;номер&gt;, например: +7&nbsp;926-840-55-49. Минимальная длина&nbsp;&mdash; 5&nbsp;символов",
 	"components.SignupForm.phoneLabel": "Номер телефона",
-	"components.SignupForm.photoHint": "Принимаются фотографии форматов JPG и&nbsp;PNG размером не&nbsp;более 5&nbsp;МБ",
+	"components.SignupForm.photoHint": "Принимаются только изображения форматов JPEG размером не&nbsp;более 5&nbsp;МБ",
 	"components.SignupForm.photoLabel": "Фотография",
 	"components.SignupForm.signupErrorTitle": "Ошибка регистрации",
 	"components.SignupForm.signupFormHint": "Вам необходимо предоставить некоторую информацию о&nbsp;себе. Пожалуйста, заполните нижеследующую форму.",

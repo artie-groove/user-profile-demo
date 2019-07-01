@@ -84,7 +84,7 @@
 	"components.SignupForm.personalInformationProcessingLabel": "I give my consent to process my personal data",
 	"components.SignupForm.phoneHint": "Phone number in the following format: <country code> <number>, for example, +7 926-840-55-49. Minimum 5 characters",
 	"components.SignupForm.phoneLabel": "Phone number",
-	"components.SignupForm.photoHint": "PNG and JPEG files only. Maximum size - 5 MB",
+	"components.SignupForm.photoHint": "JPEG files only. Maximum size - 5 MB",
 	"components.SignupForm.photoLabel": "Photo",
 	"components.SignupForm.signupErrorTitle": "Sign up error",
 	"components.SignupForm.signupFormHint": "You need to provide some personal information. Please, fill in the form below",
