@@ -4,6 +4,7 @@ const jwt = require('./utils/jwt')();
 const { init, errorHandler } = require('./utils/helpers');
 const { localeHandler } = require('./utils/i18n');
 const apiHandlers = require('./api');
+const graphqlHandler = require('./graphql');
 const cookieParser = require('cookie-parser');
 const express = require("express");
 const cors = require("cors")(); // Cross-Origin Resource Sharing
@@ -55,6 +56,9 @@ app.use(errorHandler);
 
 // Attach handlers for API requests with the prefix
 app.use("/api", apiHandlers);
+
+// Attach GrqphQL middelware
+app.use('/graphql', graphqlHandler);
 
 // The following routes are handled by the frontend's single page application
 // Just serve index.html in return

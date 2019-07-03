@@ -11,6 +11,7 @@ function jwt() {
 	            '/api/get-locale',
 	            '/api/check-uniqueness',
 	            '/api/put-user-profile',
+	            '/graphql',
 	            '/',
 	            /\/photos\/.+\.(?:jpg|png)$/,
 	            /\/i18n\/.+/,

@@ -1,13 +1,14 @@
-FROM		node:12
+FROM		node:12 AS builder
 LABEL		maintainer="Artie Groove <@groove8>"
 
-
 WORKDIR		/home/node/app
-COPY		backend/package*.json ./
-ENV			NODE_ENV=production
-RUN			npm install
 
-COPY		backend/build/server.js ./
+COPY		backend/package*.json ./
+RUN			npm install && npm dedupe
+
+ENV			NODE_ENV=production
+
+#COPY		backend/build/server.js ./
 COPY		backend/src/public ./public
 COPY		frontend/build ./public
 
