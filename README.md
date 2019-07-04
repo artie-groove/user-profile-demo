@@ -1,6 +1,6 @@
-# User profile demo
+# User registrar
 
-The application is a demo written in order to apply for a developer position in a company according to a test task. It implements CR functions (create and read): user signup and account display.
+User submission module for a company. It implements CR functions (create and read): user signup and account display.
 
 ## Software utilized
 * MERN software stack

@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const express = require("express");
 const cors = require("cors")(); // Cross-Origin Resource Sharing
 const path = require("path");
-const logger = require("morgan");
 
 init();
 
@@ -43,12 +42,6 @@ app.use(express.static('public', {
 	},
 
 }));
-
-// (optional) only made for logging and
-// bodyParser, parses the request body to be a readable json format
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-app.use(logger("dev"));
 
 // Global error handler
 app.use(errorHandler);
