@@ -1,5 +1,10 @@
 *
 !backend/package*.json
-!backend/src/public
-!frontend/build
-!backend/build
+!backend/webpack.config.js
+!backend/src
+!frontend/src
+!frontend/public
+!frontend/.*
+!frontend/package*.json
+!frontend/jsconfig.json
+!frontend/config-overrides.js
